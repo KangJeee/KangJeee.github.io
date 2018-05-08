@@ -2,7 +2,46 @@
 <HTML>
 <HEAD>
 <meta http=equiv=“Content-Type” content=“text/heml;charset=euc-kr”>
+<style>
+button{
+	background:#1AAB8A;
+	color:#fff;
+	border:none;
+	position:relative;
+	height:60px;
+	font-size:1.6em;
+	padding:0 2em;
+	cursor:pointer;
+	transition:800ms ease all;
+	outline:none;
+}
+button:hover{
+	background:#fff;
+	color:#1AAB8A;
+}
+button:before,button:after{
+	content:'';
+	position:absolute;
+	top:0;
+	right:0;
+	height:2px;
+	width:0;
+	background: #1AAB8A;
+	transition:400ms ease all;
+}
+button:after{
+	right:inherit;
+	top:inherit;
+	left:0;
+	bottom:0;
+}
+button:hover:before,button:hover:after{
+	width:100%;
+	transition:800ms ease all;
+}
+</style>
 </HEAD>
+	
 <BODY bgcolor = #C0C0E0>
 	<TABLE border = 1 bordercolor = BLUE><TR><TD>
 	<A href = "right.html" target="right"><IMG src = "Banner.PNG" width = 210px height = 70px></A>
@@ -12,10 +51,11 @@
 	<A href = "coding_is.html" target = "right"> <FONT color = #FF0000> 코딩이란? </FONT></A><HR><P><P>
 		<span style="background: skyblue; font-weight:bold"><STRONG>참고 자료</STRONG></span><P>
 		<UL>
-			<LI><A href = "http://www.clickseo.com/?p=web_programming" target="right">웹(Click Seo.com)</A>
-			<LI><A href = "http://www.clickseo.com/?p=c_programming" target = "right">C(Click Seo.com)</A>
-			<LI><A href = "http://www.clickseo.com/?p=cpp_programming" target = "right">C++(Click Seo.com)</A>
-			<LI><A href = "https://wikidocs.net/43" target = "right">Python</A>
+			<input type = "button" value ="웹(Click Seo.com)" onClick="location.href='http://www.clickseo.com/?p=web_programming'">
+			<A href = "http://www.clickseo.com/?p=web_programming" target="right"></A>
+			<A href = "http://www.clickseo.com/?p=c_programming" target = "right">C(Click Seo.com)</A>
+			<A href = "http://www.clickseo.com/?p=cpp_programming" target = "right">C++(Click Seo.com)</A>
+			<A href = "https://wikidocs.net/43" target = "right">Python</A>
 		</UL>
 	<HR>
 	<IMG src = "Banner2.png" usemap = "#left_banner" width = 210px height = 250px>
