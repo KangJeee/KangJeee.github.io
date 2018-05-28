@@ -4,62 +4,72 @@
 <meta http=equiv=“Content-Type” content=“text/heml;charset=euc-kr”>
 <style>
 #button1{
-	background:#C0C0E0;
-	color:#fff;
+	background-color: white;
+	color:black;
 	border:none;
 	position:relative;
-	height:35px;
-	width:220px;
-	font-size:10px;
+	height:50px;
+	width:100%;
+	margin: 0;
+	font-size:15px;
 	padding:0 2em;
 	cursor:pointer;
 	transition:800ms ease all;
 	outline:none;
 }
 #button1:hover{
-	background:#fff;
-	color:#C0C0E0;
+	background:black;
+	color:white;
 }
-#button1:before,#button:after{
-	content:'';
-	position:absolute;
-	top:0;
-	right:0;
-	height:2px;
-	width:0;
-	background: #C0C0E0;
-	transition:400ms ease all;
-}
-#button1:after{
-	right:inherit;
-	top:inherit;
-	left:0;
-	bottom:0;
-}
-#button1:hover:before,#button1:hover:after{
+#buttonWiki{
+	background-color: white;
+	color:black;
+	border:none;
+	position:relative;
+	height:100px;
 	width:100%;
+	margin: 0;
+	font-size: 30px;
+	font-family: Godic;
+	padding:0 2em;
+	cursor:pointer;
 	transition:800ms ease all;
+	outline:none;
 }
+#buttonWiki:hover{
+	background:red;
+	color:white;
+}
+#timer{
+	font-size: 30px;
+	width: 100%;
+	border-top: 1px solid black;
+	text-align: center;
+	border-bottom: 1px solid black;
+}
+#timer > #Num{
+	font-size: 45px;
+	width: 100%;
+	text-align: center;
+}
+a{color: black; text-decoration: none;}
+
 </style>
 </HEAD>
 	
-<BODY bgcolor = #C0C0E0>
-	<TABLE border = 1 bordercolor = WHITE><TR><TD>
-	<A href = "right.html" target="right"><IMG src = "Banner.PNG" width = 210px height = 70px></A>
-	</TD></TR></TABLE>
-	<P>
-	
-	<A href = "coding_is.html" target = "right"> <FONT color = #FF0000> 코딩이란? </FONT></A><HR><P><P>
-		<span style="background: skyblue; font-weight:bold"><STRONG>참고 자료</STRONG></span><P>
-			<button id="button1" onClick="location.href='http://www.clickseo.com/?p=web_programming'">웹(Click Seo.com)</button>
-			<button id="button1" onClick="location.href='http://www.clickseo.com/?p=c_programming'">C(Click Seo.com)</button>
-			<button id="button1" onClick="location.href='http://www.clickseo.com/?p=cpp_programming'">C++(Click Seo.com)</button>
-			<button id="button1" onClick="parent.right.location.href='https://wikidocs.net/43'">Python</button>
-	<HR>
-	<IMG src = "Banner2.png" usemap = "#left_banner" width = 210px height = 250px>
-	<MAP name = "left_banner">
-	<AREA shape = "rect" coords = "10,10, 205, 80" href = "http://www.github.com" target = "blank">
-	<AREA shape = "rect" coords = "10,90, 205, 164" href = "http://www.youtube.com" target = "blank">
-	<AREA shape = "rect" coords = "10, 187, 205, 221" href = "https://www.acmicpc.net" target = "blank">
-</BODY>
+<BODY style="margin: 0;">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type = "text/javascript" src = "./left.js"></script>
+	<button id="button1" onClick="parent.right.location.href='right.html'">HOME</button>
+	<button id="button1" onClick="parent.right.location.href='c.html'">웹</button>
+	<button id="button1" onClick="parent.right.location.href='c.html'">C</button>
+	<button id="button1" onClick="parent.right.location.href='c.html'">C++</button>
+	<button id="button1" onClick="parent.right.location.href='c.html'">Python</button>
+	<button id="buttonWiki" onClick="parent.right.location.href='https://wikidocs.net/'">WikiDocs</button>
+	<div id='timer'>
+		<storng>공부 시작한지</storng>
+		<div id='Num'>
+			00:00:00
+		</div>
+	</div>
 </HTML>
