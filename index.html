@@ -1,15 +1,292 @@
-<!DOCTYPE html>
-<HTML>
-<HEAD>
-<meta charset="UTF-8" />
-<meta charset="EUC-KR" />
-<TITLE> 2014726087_강지현</TITLE>
-</HEAD>
-	<FRAMESET rows = "25%, 75%" noresize border = 1>
-		<FRAME src = "Top.html">
-		<FRAMESET cols = "17%, 83%" noresize>
-			<FRAME src = "left.html" name = "left">
-			<FRAME src = "right.html"name = "right">
-		</FRAMESET>
-	</FRAMESET>
-</HTML>
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>CALC_2014726087</title>
+
+<!--버튼 style 구성-->
+<style>
+.num_key{
+	background-color: #FFFFFF;
+	width: 60px;
+	height: 60px;
+	border-radius: 8px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	font-size: 30px;
+}
+.op_key{
+	background-color: #008CBA;
+	width: 60px;
+	height: 60px;
+	border-radius: 8px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	font-size: 30px;
+	color: #FFFFFF;
+}
+.op_key2{
+	background-color: #00BCEA;
+	width: 60px;
+	height: 35px;
+	border-radius: 8px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	font-size: 11px;
+}
+.divide_key{
+	background-color: #008CBA;
+	width: 60px;
+	height: 80px;
+	border-radius: 8px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	font-size: 30px;
+	color: #FFFFFF;
+}
+.ex_key{
+	background-color: #4CAF50;
+	width: 60px;
+	height: 60px;
+	border-radius: 8px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	font-size: 30px;
+}
+.AC_key{
+	background-color: RED;
+	width: 60px;
+	height: 80px;
+	border-radius: 8px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	font-size: 30px;
+}
+.spc_key{
+	background-color: GRAY;
+	width: 60px;
+	height: 60px;
+	border-radius: 8px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	font-size: 30px;
+}
+</style>
+<!--구조 선택자 style 구성-->
+<style>
+.selector{
+	position : absolute;
+	display : none;
+}
+.selector_btn{
+	background-color : #00BCEA;
+	width: 50px;
+	height: 30px;
+	border : 1px solid black;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	font-size: 10px;
+	border-radius: 5px;
+}
+</style>
+<style>
+	ul{overflow : hidden;}
+	li{list-style : none; float : left; padding 10px;}
+</style>
+<!-- 계산기 몸체 style 구성 -->
+<style>
+.calc-body{
+	background-color : BLACK;
+	border-radius : 10px;
+	width : 350px;
+	height : 650px;
+}
+#past{
+	background-color : #CDDECC;
+	border : 1;
+	width : 303px;
+	height : 60px;
+	font-size : 15px;
+	overflow-y : scroll;
+	text-align : left;
+}
+.calc-result{
+	border : 1;
+	border-radius : 0 0 10px 10px;
+	width : 300px;
+	height : 20px;
+	font-size : 20px;
+	background-color : #CDDECC;
+}
+</style>
+</head>
+
+<!-- Body 시작, 계산기의 UI 구현 -->
+<body onload="draw()" oncontextmenu="return false" onselectstart ="return false">
+	<!--같은 디렉토리에 존재하는 CALC.js와 Jquery를 사용함-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type = "text/javascript" src = "./sources/CALC.js"></script>
+
+	<center>
+	<div class="calc-body">
+			<FONT size = 5 style="color : #FFFFFF; 	font-weight: bold;">CALCULATOR</FONT><BR>
+			<FONT size = 3 style="color : #FFFFFF;">2014726087 강지현</FONT>
+			<table>
+				<!--결과창 구성-->
+				<tr>
+					<div id="past"></div>
+				</tr>
+				<tr>
+					<input type="text" id="inval" readonly class=calc-result style="text-align : right;">
+				</tr>
+
+				<!--AC, 함수, 삼각함수, 상수, 나누기 버튼 구성(구조선택자 포함)-->
+				<tr>
+					<td rowspan = 2 ><button value="AC" class=AC_key>AC</button></td>
+					<td>
+						<button value="func" class = op_key2 id="id_func">함수</button>
+						<div class = selector id="selector_func">
+							<ul>
+								<li><button value="exp(" class=selector_btn>exp</button></li>
+								<li><button value="log(" class=selector_btn>log</button></li>
+								<li><button value="sqrt(" class=selector_btn>sqrt</button></li>
+								<li><button value="dot(" class=selector_btn>내적</button></li>
+								<li><button value="cross(" class=selector_btn>외적</button></li>
+							</ul>
+						</div>
+					</td>
+					<td>
+						<button value="ang" class = op_key2 id="id_ang">삼각함수</button>
+						<div class = selector id="selector_ang">
+							<ul>
+								<li><button value="sin(" class=selector_btn>sin</button></li>
+								<li><button value="cos(" class=selector_btn>cos</button></li>
+								<li><button value="tan(" class=selector_btn>tan</button></li>
+								<li><button value="rad" class=selector_btn>rad</button></li>
+								<li><button value="deg" class=selector_btn>deg</button></li>
+							</ul>
+						</div>
+					</td>
+					<td>
+						<button value="const" class = op_key2 id="id_const">상수</button>
+						<div class = selector id="selector_const">
+							<ul>
+								<li><button value="pi" class=selector_btn>π</button></li>
+								<li><button value="e" class=selector_btn>e</button></li>
+								<li><button value="i" class=selector_btn>i</button></li>
+							</ul>
+						</div>
+					</td>
+					<td rowspan = 2><button value="/" class=divide_key>÷</button></td>
+				</tr>
+
+				<!---->
+				<tr>
+					<td>
+						<button value="logic" class = op_key2 id="id_logic">비교연산</button>
+						<div class = selector id="selector_logic">
+							<ul>
+								<li><button value="==" class=selector_btn>==</button></li>
+								<li><button value="!=" class=selector_btn>!=</button></li>
+								<li><button value=">" class=selector_btn>></button></li>
+								<li><button value="<" class=selector_btn><</button></li>
+								<li><button value=">=" class=selector_btn><=</button></li>
+								<li><button value="<=" class=selector_btn>>=</button></li>
+							</ul>
+						</div>
+					</td>
+					<td>
+						<button value="var" class = op_key2 id="id_var">변수</button>
+						<div class = selector id="selector_var">
+							<ul>
+								<li><button value="x" class=selector_btn>x</button></li>
+								<li><button value="y" class=selector_btn>y</button></li>
+								<li><button value="z" class=selector_btn>z</button></li>
+								<li><button value="=" class=selector_btn>=</button></li>
+							</ul>
+						</div>
+					</td>
+					<td>
+						<button value="dfunc" class = op_key2 id="id_dfunc">함수정의</button>
+						<div class = selector id="selector_dfunc">
+							<ul>
+								<li><button value="f" class=selector_btn>f</button></li>
+								<li><button value="g" class=selector_btn>g</button></li>
+								<li><button value="(" class=selector_btn>(</button></li>
+								<li><button value="," class=selector_btn>,</button></li>
+								<li><button value=")" class=selector_btn>)</button></li>
+								<li><button value="=" class=selector_btn>=</button></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+				<!--행렬버튼과 번호키, 기타 연산자 구현-->
+                <tr class="number">
+                	<td><button value="^" class=op_key>^</button></td>
+                    <td><button value="7" class=num_key>7</button></td>
+                    <td><button value="8" class=num_key>8</button></td>
+                    <td><button value="9" class=num_key>9</button></td>
+                    <td><button value="*" class=op_key>×</button></td>
+                </tr>
+                    <tr class="number">
+					<td><button value="%" class=op_key>%</button></td>
+                    <td><button value="4" class=num_key>4</button></td>
+                    <td><button value="5" class=num_key>5</button></td>
+                    <td><button value="6" class=num_key>6</button></td>
+                    <td><button value="-" class=op_key>-</button></td>
+                </tr>
+                <tr class="number">
+					<td>
+						<button value="bracket" class=op_key id="id_bracket">
+						<FONT size = 4>괄호</FONT></button>
+						<div class = selector id="selector_bracket">
+							<ul>
+								<li><button value="(" class=selector_btn>(</button></li>
+								<li><button value=")" class=selector_btn>)</button></li>
+							</ul>
+						</div>
+					</td>
+                    <td><button value="1" class=num_key>1</button></td>
+                    <td><button value="2" class=num_key>2</button></td>
+                    <td><button value="3" class=num_key>3</button></td>
+                    <td><button value="+" class=op_key>+</button></td>
+                </tr>
+                <tr class="number">
+                	<td>
+						<button value="matrix" class=spc_key id="id_matrix">
+						<FONT size = 4>행렬</FONT></button>
+						<div class = selector id="selector_matrix">
+							<ul>
+								<li><button value="[" class=selector_btn>[</button></li>
+								<li><button value="]" class=selector_btn>]</button></li>
+								<li><button value="," class=selector_btn>,</button></li>
+								<li><button value=";" class=selector_btn>;</button></li>
+								<li><button value="inv(" class=selector_btn>역행렬</button></li>
+								<li><button value="det(" class=selector_btn>행렬식</button></li>
+							</ul>
+						</div>
+					</td>
+					<td><button value="." class=spc_key>.</button></td>
+                   	<td><button value="0" class=num_key>0</button></td>
+					<td><button value="back" class=spc_key>←</button></td>
+                    <td><button value="ex" class=ex_key>Ex</button></td>
+                </tr>
+                <tr>
+                	<td colspan="5"><br></td>
+                </tr>
+                <tr>
+                	<td colspan="5"><canvas id="canvas" width="315" height="130"
+                		style="border-radius: 5px; border: 2px solid white; background: #CDDECC;"></canvas></td>
+                </tr>
+    	</table>
+    </div>
+	</center>
+</body>
+</html>
