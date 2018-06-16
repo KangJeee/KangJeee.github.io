@@ -145,7 +145,7 @@ $(function() {
     });
 
     /*계산기 구현 영역*/
-    $buttons.mousedown(function (){
+    $buttons.touchstart(function (){
         var newVal = $(this).val();
         var $inval = $("#inval");
         var $oldval = $inval.val();
