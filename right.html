@@ -5,6 +5,23 @@
 </HEAD>
 <BODY>
 
+<script type="text/javascript">
+    function loadPDF(){
+        fetch(
+            "https://getsamplefiles.com/download/pdf/sample-1.pdf",
+            { 
+                responseType: 'blob',
+                headers: { 
+                    'Content-Type': 'application/pdf',
+                    'Content-Disposition': 'attachment; filename="filename.pdf"' 
+                } 
+            }
+        )
+        .then( res => res.json() )
+        .then( data => console.log(data) );
+    }
+</script>
+
 <CENTER>
 <FONT size = 7><EM> DummyTitle </FONT></EM><P> 
     </CENTER>
@@ -16,21 +33,10 @@ dummy_short_description<p>
 <CENTER>
 dummy_long_description<p>
 .<br>.<br>.<p>
-<script type="text/javascript">
-const dummyURL = "attachment/test_download.pdf"
-function loadPDF(){
-        fetch(
-            "attachment/test_download.pdf",
-            { 'Content-Disposition': 'attachment; filename="filename.pdf"' }
-        )
-        .then( res => res.json() )
-        .then( data => console.log(data) );
-}
-</script>
 </br>
-<h1><a href="dummyURL">HREF</a></h1>
+<h1><a href="attachment/test_download.pdf">HREF</a></h1>
 </br>
-<h1><a href="dummyURL" download>HREF download</a></h1>
+<h1><a href="https://getsamplefiles.com/download/pdf/sample-1.pdf" download="test_download.pdf">HREF sample download</a></h1>
 </br>
 <h1><a href="#" onclick="loadPDF()" download>With Header download</a></h1>
 </CENTER>
