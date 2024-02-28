@@ -20,7 +20,7 @@ dummy_long_description<p>
 const dummyURL = "attachment/test_download.pdf"
 function loadPDF(){
         fetch(
-            dummyURL,
+            `${dummyURL}`,
             { 'Content-Disposition': 'attachment; filename="filename.pdf"' }
         )
         .then( res => res.json() )
@@ -32,7 +32,7 @@ function loadPDF(){
 </br>
 <h1><a href="dummyURL" download>HREF download</a></h1>
 </br>
-<h1><a href="#" onclick="loadPDF()" download>JS download</a></h1>
+<h1><a href="#" onclick="loadPDF()" download>JavaScript download</a></h1>
 </CENTER>
 </EM>
 </article>
